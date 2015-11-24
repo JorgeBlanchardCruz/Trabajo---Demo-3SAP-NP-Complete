@@ -37,64 +37,71 @@ namespace Demo_3SAP_NP_Complete {
         }
 
         private static void caseSize1 (CClausule clausule, CLiteralSet newLiteral, CClausuleSet newClausules) {
-            CLiteral y1 = CLiteral.generateLiteral();
-            CLiteral y2 = CLiteral.generateLiteral();
-            bool[] direct = new bool[3];
-            CLiteral[] clausuleLiteral = new CLiteral[3];
-
+            // U'j
+            CLiteral y1 = CLiteral.generateLiteral(); // y1j
             newLiteral.addLiteral(y1);
+
+            CLiteral y2 = CLiteral.generateLiteral(); // y2j
             newLiteral.addLiteral(y2);
 
-            clausuleLiteral[0] = clausule.getClausuleLiterals()[0];
-            clausuleLiteral[1] = y1;
-            clausuleLiteral[2] = y2;
+            // C'j
+            bool[] direct = new bool[3];
+            CLiteral[] clausuleLiteral = new CLiteral[3]; 
 
+            clausuleLiteral[0] = clausule.getClausuleLiterals()[0]; // z1
             direct[0] = clausule.getAreDirect()[0];
+
+            clausuleLiteral[1] = y1; // y1j
             direct[1] = true;
+
+            clausuleLiteral[2] = y2; // y2j
             direct[2] = true;
 
-            newClausules.addClausule(new CClausule(clausuleLiteral, direct));
+            newClausules.addClausule(new CClausule(clausuleLiteral, direct)); // {z1, y1j, y2j}
 
-            direct[1] = false;
-            direct[2] = true;
+            direct[1] = false; // y1j
+            direct[2] = true; // ¬y2j
 
-            newClausules.addClausule(new CClausule(clausuleLiteral, direct));
+            newClausules.addClausule(new CClausule(clausuleLiteral, direct)); // {z1, y1j, ¬y2j}
 
-            direct[1] = true;
-            direct[2] = false;
+            direct[1] = true; // ¬y1j
+            direct[2] = false; // y2j
 
-            newClausules.addClausule(new CClausule(clausuleLiteral, direct));
+            newClausules.addClausule(new CClausule(clausuleLiteral, direct)); // {z1, ¬y1j, y2j}
 
-            direct[1] = false;
-            direct[2] = false;
+            direct[1] = false; // ¬y1j
+            direct[2] = false; // ¬y2j
 
-            newClausules.addClausule(new CClausule(clausuleLiteral, direct));
+            newClausules.addClausule(new CClausule(clausuleLiteral, direct)); // {z1, ¬y1j, ¬y2j}
         }
 
         private static void caseSize2 (CClausule clausule, CLiteralSet newLiteral, CClausuleSet newClausules) {
-            CLiteral y1 = CLiteral.generateLiteral();
-            bool[] direct = new bool[3];
-            CLiteral[] clausuleLiteral = new CLiteral[3];
-
+            // U'j
+            CLiteral y1 = CLiteral.generateLiteral(); // y1j
             newLiteral.addLiteral(y1);
 
-            clausuleLiteral[0] = clausule.getClausuleLiterals()[0];
-            clausuleLiteral[1] = clausule.getClausuleLiterals()[1];
-            clausuleLiteral[2] = y1;
+            // C'j
+            bool[] direct = new bool[3];
+            CLiteral[] clausuleLiteral = new CLiteral[3];            
 
+            clausuleLiteral[0] = clausule.getClausuleLiterals()[0]; // z1
             direct[0] = clausule.getAreDirect()[0];
+
+            clausuleLiteral[1] = clausule.getClausuleLiterals()[1]; // z2
             direct[1] = clausule.getAreDirect()[1];
+
+            clausuleLiteral[2] = y1; // y1j
             direct[2] = true;
 
-            newClausules.addClausule(new CClausule(clausuleLiteral, direct));
+            newClausules.addClausule(new CClausule(clausuleLiteral, direct)); // {z1, z2, y1j}
 
-            direct[2] = false;
+            direct[2] = false; // ¬y1j
 
-            newClausules.addClausule(new CClausule(clausuleLiteral, direct));
+            newClausules.addClausule(new CClausule(clausuleLiteral, direct)); // {z1, z2, ¬y1j}
         }
 
         private static void caseSize3 (CClausule clausule, CLiteralSet newLiteral, CClausuleSet newClausules) {
-            newClausules.addClausule(clausule);
+            newClausules.addClausule(clausule); //{cj}
         }
 
         private static void caseSize4 (CClausule clausule, CLiteralSet newLiteral, CClausuleSet newClausules) {
@@ -108,18 +115,15 @@ namespace Demo_3SAP_NP_Complete {
             direct[1] = clausule.getAreDirect()[1];
 
             CLiteral l = CLiteral.generateLiteral(); // y1j
-            clausuleLiteral[2] = l; 
-            direct[2] = true;
-
             newLiteral.addLiteral(l);
+            clausuleLiteral[2] = l; 
+            direct[2] = true;            
 
             newClausules.addClausule(new CClausule(clausuleLiteral, direct)); // {z1, z2, y1j}
 
-            direct[0] = false;
-            direct[2] = true;
-
             for (int i = 0; i < clausule.getSize() - 4; i++) { // 1 <= i <= k-4
                 clausuleLiteral[0] = l; // ¬yij
+                direct[0] = false;
 
                 clausuleLiteral[1] = clausule.getClausuleLiterals()[i + 2]; // zi+2
                 direct[1] = clausule.getAreDirect()[i + 2];
@@ -127,6 +131,7 @@ namespace Demo_3SAP_NP_Complete {
                 l = CLiteral.generateLiteral(); // yi+1j
                 clausuleLiteral[2] = l; 
                 newLiteral.addLiteral(l);
+                direct[2] = true;
 
                 newClausules.addClausule(new CClausule(clausuleLiteral, direct)); // {{¬yij, zi+2, yi+1j} ; 1 <= i <= k-4}
             }
