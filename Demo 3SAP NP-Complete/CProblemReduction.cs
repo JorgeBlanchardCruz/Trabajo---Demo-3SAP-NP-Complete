@@ -13,7 +13,7 @@ namespace Demo_3SAP_NP_Complete {
 
             newLiterals.addAllLiterals(problem.getLiterals());
 
-            for (int i = 0; i < problem.getClausules().getClausules().Count; i++) {
+            for (int i = 0; i < problem.getClausules().getClausules().Count; i++) { // por cada clausula de entrada
 
                 if (problem.getClausules().getClausules()[i].getSize() == 1)
 
