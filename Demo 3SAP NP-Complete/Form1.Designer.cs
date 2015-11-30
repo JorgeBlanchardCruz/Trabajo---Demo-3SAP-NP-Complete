@@ -25,11 +25,12 @@
         private void InitializeComponent () {
             this.button1 = new System.Windows.Forms.Button();
             this.txOutput = new System.Windows.Forms.TextBox();
+            this.cbProblem = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 12);
+            this.button1.Location = new System.Drawing.Point(239, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(188, 23);
             this.button1.TabIndex = 0;
@@ -48,12 +49,26 @@
             this.txOutput.Size = new System.Drawing.Size(931, 399);
             this.txOutput.TabIndex = 1;
             // 
+            // cbProblem
+            // 
+            this.cbProblem.FormattingEnabled = true;
+            this.cbProblem.Items.AddRange(new object[] {
+            "Problem size 1",
+            "Problem size 2",
+            "Problem size 3",
+            "Problem size 4"});
+            this.cbProblem.Location = new System.Drawing.Point(16, 13);
+            this.cbProblem.Name = "cbProblem";
+            this.cbProblem.Size = new System.Drawing.Size(217, 21);
+            this.cbProblem.TabIndex = 2;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(959, 461);
+            this.Controls.Add(this.cbProblem);
             this.Controls.Add(this.txOutput);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -69,6 +84,7 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txOutput;
+        private System.Windows.Forms.ComboBox cbProblem;
     }
 }
 

@@ -3,6 +3,7 @@
 
         private int _id;
         private bool? _value;
+
         private static int _lastAssignedId = 0;
 
         private CLiteral (int id) {

@@ -56,22 +56,18 @@ namespace Demo_3SAP_NP_Complete {
 
             clausuleLiteral[2] = y2; // y2j
             direct[2] = true;
-
             newClausules.addClausule(new CClausule(clausuleLiteral, direct)); // {z1, y1j, y2j}
 
-            direct[1] = false; // y1j
-            direct[2] = true; // ¬y2j
-
-            newClausules.addClausule(new CClausule(clausuleLiteral, direct)); // {z1, y1j, ¬y2j}
-
-            direct[1] = true; // ¬y1j
-            direct[2] = false; // y2j
-
+            direct[1] = false; // ¬y1j
+            direct[2] = true;  // y2j
             newClausules.addClausule(new CClausule(clausuleLiteral, direct)); // {z1, ¬y1j, y2j}
+
+            direct[1] = true;  // y1j
+            direct[2] = false; // ¬y2j
+            newClausules.addClausule(new CClausule(clausuleLiteral, direct)); // {z1, y1j, ¬y2j}
 
             direct[1] = false; // ¬y1j
             direct[2] = false; // ¬y2j
-
             newClausules.addClausule(new CClausule(clausuleLiteral, direct)); // {z1, ¬y1j, ¬y2j}
         }
 
